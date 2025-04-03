@@ -6,6 +6,8 @@
     <title>PickFlix - Your Movie and TV Show Recommendation Source</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Custom CSS -->
     <style>
         body {
@@ -24,16 +26,23 @@
         .movie-card {
             margin-bottom: 2rem;
             transition: transform 0.3s;
+            height: 100%;
         }
         .movie-card:hover {
             transform: scale(1.03);
         }
         .movie-poster {
-            height: 200px;
+            height: 300px;
             background-color: #dee2e6;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+        }
+        .movie-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .movie-info {
             padding: 1rem;
@@ -48,6 +57,7 @@
         }
         .movie-rating {
             font-weight: bold;
+            color: #ff8c00;
         }
         .search-bar {
             margin: 1.5rem 0;
@@ -70,9 +80,20 @@
         .carousel-control-prev {
             width: 5%;
         }
+        .badge {
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
+    <?php
+    // Include the programme data
+    require_once 'loadProgrammes.php';
+    
+    // Get all programmes
+    $allProgrammes = getAllProgrammes();
+    ?>
+
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -92,10 +113,13 @@
                         <a class="nav-link" href="#">TV Shows</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Profile</a>
+                        <a class="nav-link" href="#">Rankings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="#">Service Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Login</a>
                     </li>
                 </ul>
             </div>
@@ -127,56 +151,41 @@
     <div class="container">
         <h2 class="mb-4">Featured Movies & TV Shows</h2>
         <div class="row">
-            <!-- Movie Card 1 -->
+            <?php foreach ($allProgrammes as $programme): ?>
             <div class="col-md-4">
                 <div class="card movie-card">
                     <div class="movie-poster">
-                        <svg width="50" height="50" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-                        </svg>
+                        <?php if (file_exists($programme->coverImage)): ?>
+                            <img src="<?php echo $programme->coverImage; ?>" alt="<?php echo $programme->title; ?> Poster">
+                        <?php else: ?>
+                            <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                                <i class="fas <?php echo $programme->type == 'movie' ? 'fa-film' : 'fa-tv'; ?> fa-3x mb-2"></i>
+                                <span><?php echo $programme->title; ?></span>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Inception</h5>
-                        <p class="card-text movie-details">2010 | Action, Sci-Fi<br>Director: Christopher Nolan<br>PickFlix Rating: 9.2/10</p>
-                        <a href="#" class="btn btn-outline-secondary btn-sm">View Details</a>
+                        <h5 class="card-title"><?php echo $programme->title; ?></h5>
+                        <p class="card-text movie-details">
+                            <?php echo $programme->year; ?> | 
+                            <?php echo $programme->getGenresString(); ?><br>
+                            <?php if ($programme->type == 'movie'): ?>
+                                Director: <?php echo $programme->director; ?><br>
+                            <?php else: ?>
+                                Creator: <?php echo $programme->creator ?? 'Not specified'; ?><br>
+                            <?php endif; ?>
+                            PickFlix Rating: <span class="movie-rating"><?php echo $programme->yourRating; ?>/10</span>
+                        </p>
+                        <div class="mb-2">
+                            <?php foreach ($programme->genres as $genre): ?>
+                                <span class="badge bg-secondary"><?php echo $genre; ?></span>
+                            <?php endforeach; ?>
+                        </div>
+                        <a href="programme.php?id=<?php echo $programme->id; ?>" class="btn btn-outline-secondary btn-sm">View Details</a>
                     </div>
                 </div>
             </div>
-            
-            <!-- Movie Card 2 -->
-            <div class="col-md-4">
-                <div class="card movie-card">
-                    <div class="movie-poster">
-                        <svg width="50" height="50" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-                        </svg>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Stranger Things</h5>
-                        <p class="card-text movie-details">2016 | Drama, Horror<br>Creators: The Duffer Brothers<br>PickFlix Rating: 9.1/10</p>
-                        <a href="#" class="btn btn-outline-secondary btn-sm">View Details</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Movie Card 3 -->
-            <div class="col-md-4">
-                <div class="card movie-card">
-                    <div class="movie-poster">
-                        <svg width="50" height="50" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-                        </svg>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">The Dark Knight</h5>
-                        <p class="card-text movie-details">2008 | Action, Crime<br>Director: Christopher Nolan<br>PickFlix Rating: 9.1/10</p>
-                        <a href="#" class="btn btn-outline-secondary btn-sm">View Details</a>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
@@ -189,80 +198,42 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="row">
-                                <!-- Movie 1 -->
+                                <?php 
+                                // Sort programmes by rating (descending)
+                                $topPicks = sortProgrammesBy('yourRating', false);
+                                $count = 0;
+                                foreach ($topPicks as $programme): 
+                                    if ($count >= 4) break; // Show only 4 items
+                                ?>
                                 <div class="col-md-3">
                                     <div class="card movie-card">
                                         <div class="movie-poster">
-                                            <svg width="30" height="30" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
-                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-                                            </svg>
+                                            <?php if (file_exists($programme->coverImage)): ?>
+                                                <img src="<?php echo $programme->coverImage; ?>" alt="<?php echo $programme->title; ?> Poster">
+                                            <?php else: ?>
+                                                <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                                                    <i class="fas <?php echo $programme->type == 'movie' ? 'fa-film' : 'fa-tv'; ?> fa-3x mb-2"></i>
+                                                    <span><?php echo $programme->title; ?></span>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                         <div class="card-body">
-                                            <h6 class="card-title">Toy Story 4</h6>
-                                            <p class="card-text small">Animation | Family<br>PickFlix: 9.4/10</p>
+                                            <h5 class="card-title"><?php echo $programme->title; ?></h5>
+                                            <p class="card-text movie-details">
+                                                <?php echo $programme->year; ?> | <?php echo $programme->ageRating; ?><br>
+                                                PickFlix Rating: <span class="movie-rating"><?php echo $programme->yourRating; ?>/10</span>
+                                            </p>
+                                            <a href="programme.php?id=<?php echo $programme->id; ?>" class="btn btn-outline-secondary btn-sm">View Details</a>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Movie 2 -->
-                                <div class="col-md-3">
-                                    <div class="card movie-card">
-                                        <div class="movie-poster">
-                                            <svg width="30" height="30" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
-                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-                                            </svg>
-                                        </div>
-                                        <div class="card-body">
-                                            <h6 class="card-title">The Godfather</h6>
-                                            <p class="card-text small">Crime | Drama<br>PickFlix: 9.3/10</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Movie 3 -->
-                                <div class="col-md-3">
-                                    <div class="card movie-card">
-                                        <div class="movie-poster">
-                                            <svg width="30" height="30" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
-                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-                                            </svg>
-                                        </div>
-                                        <div class="card-body">
-                                            <h6 class="card-title">Breaking Bad</h6>
-                                            <p class="card-text small">Crime | Drama<br>PickFlix: 9.5/10</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Movie 4 -->
-                                <div class="col-md-3">
-                                    <div class="card movie-card">
-                                        <div class="movie-poster">
-                                            <svg width="30" height="30" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
-                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-                                            </svg>
-                                        </div>
-                                        <div class="card-body">
-                                            <h6 class="card-title">Pulp Fiction</h6>
-                                            <p class="card-text small">Crime | Drama<br>PickFlix: 9.0/10</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php 
+                                    $count++;
+                                endforeach; 
+                                ?>
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#topPicksCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#topPicksCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
             </div>
         </div>
@@ -271,16 +242,17 @@
     <!-- Footer -->
     <footer class="footer mt-5">
         <div class="container">
-            <p>&copy; <?php echo date('Y'); ?> PickFlix | 
-                <a href="#">About</a> | 
-                <a href="#">Terms</a> | 
-                <a href="#">Privacy</a> | 
-                <a href="#">Contact Us</a>
-            </p>
+            <p>&copy; <?php echo date('Y'); ?> PickFlix. All rights reserved.</p>
+            <div>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle with Popper -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
