@@ -1,5 +1,5 @@
 <?php
-// User class for Movie/TV Show Recommendation System
+// Define the User class
 class User {
     public $id;
     public $firstName;
@@ -8,11 +8,11 @@ class User {
     public $country;
     public $email;
     public $username;
-    public $password;
-    public $preferredMovie;
-    public $preferredTVShow;
-    
-    function __construct($id, $firstName, $lastName, $dateOfBirth, $country, $email, $username, $password, $preferredMovie = null, $preferredTVShow = null) {
+    private $password; // Keep private if storing plain text, maybe less critical now
+    public $preferredMovieId;
+    public $preferredTVShowId;
+
+    function __construct($id, $firstName, $lastName, $dateOfBirth, $country, $email, $username, $password, $preferredMovieId = null, $preferredTVShowId = null) {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -20,29 +20,14 @@ class User {
         $this->country = $country;
         $this->email = $email;
         $this->username = $username;
-        $this->password = $password;
-        $this->preferredMovie = $preferredMovie;
-        $this->preferredTVShow = $preferredTVShow;
+        $this->password = $password; // Store plain text password
+        $this->preferredMovieId = $preferredMovieId;
+        $this->preferredTVShowId = $preferredTVShowId;
     }
-    
-    // Method to verify password
-    public function verifyPassword($password) {
-        return $this->password === $password;
-    }
-    
-    // Method to get full name
-    public function getFullName() {
-        return $this->firstName . ' ' . $this->lastName;
-    }
-    
-    // Method to update preferred movie
-    public function updatePreferredMovie($movieName) {
-        $this->preferredMovie = $movieName;
-    }
-    
-    // Method to update preferred TV show
-    public function updatePreferredTVShow($tvShowName) {
-        $this->preferredTVShow = $tvShowName;
+
+    // Method to verify password (simple comparison since no hashing requested)
+    public function verifyPassword($passwordInput) {
+        return $this->password === $passwordInput;
     }
 }
 ?>

@@ -1,0 +1,135 @@
+[
+    {
+        "id": 1,
+        "title": "Last Breath",
+        "year": 2025,
+        "genres": [
+            "Drama",
+            "Thriller"
+        ],
+        "director": "Alex Parkinson",
+        "creator": null,
+        "stars": [
+            "Woody Harrelson",
+            "Simu Liu",
+            "Finn Cole"
+        ],
+        "description": "\"Last Breath\" is a gripping true story that follows seasoned deep-sea divers battling the raging elements to rescue a crew mate trapped hundreds of feet below the ocean's surface. The film combines heart-pounding tension with human resilience and teamwork.",
+        "coverImage": "https://via.placeholder.com/300x450.png?text=Last+Breath",
+        "type": "movie",
+        "ageRating": "PG-13",
+        "duration": "118 min",
+        "yourRating": 9.2,
+        "yourReview": "A truly intense and claustrophobic thriller based on an incredible real-life event. The performances are strong, and the direction keeps you on the edge of your seat. A must-watch for fans of survival stories.",
+        "externalReviews": [
+            {
+                "source": "IMDb",
+                "url": "https://www.imdb.com/title/tt8079106/",
+                "rating": 8.2,
+                "excerpt": "A gripping true story..."
+            },
+            {
+                "source": "Rotten Tomatoes",
+                "url": "https://www.rottentomatoes.com/m/last_breath_2019",
+                "rating": 9.0,
+                "excerpt": "Tense, thrilling..."
+            },
+            {
+                "source": "The Guardian",
+                "url": "https://www.theguardian.com/film/2019/apr/04/last-breath-review-deep-sea-diving-disaster-documentary",
+                "rating": 8.5,
+                "excerpt": "A nail-biting documentary..."
+            }
+        ],
+        "userReviews": []
+    },
+    {
+        "id": 2,
+        "title": "The Electric State",
+        "year": 2025,
+        "genres": [
+            "Sci-Fi",
+            "Adventure"
+        ],
+        "director": "Anthony Russo, Joe Russo",
+        "creator": null,
+        "stars": [
+            "Millie Bobby Brown",
+            "Chris Pratt",
+            "Woody Harrelson"
+        ],
+        "description": "Set in a retro-futuristic world, \"The Electric State\" follows an orphaned teen who embarks on a journey with a mysterious robot to find her long-lost brother. Along the way, she teams up with a smuggler and his wisecracking sidekick in this visually stunning and emotionally resonant adventure.",
+        "coverImage": "https://via.placeholder.com/300x450.png?text=Electric+State",
+        "type": "movie",
+        "ageRating": "PG-13",
+        "duration": "142 min",
+        "yourRating": 9.0,
+        "yourReview": "Visually spectacular with a compelling story adapted from the graphic novel. Brown and Pratt have great chemistry, and the world-building is top-notch. A great blend of adventure and heart.",
+        "externalReviews": [
+            {
+                "source": "IMDb",
+                "url": "https://www.imdb.com/title/tt15239678/",
+                "rating": 8.7,
+                "excerpt": "Visually stunning..."
+            },
+            {
+                "source": "Rotten Tomatoes",
+                "url": "https://www.rottentomatoes.com/m/the_electric_state",
+                "rating": 8.8,
+                "excerpt": "The Russo brothers deliver..."
+            },
+            {
+                "source": "Variety",
+                "url": "https://variety.com/2025/film/reviews/the-electric-state-review-1235821463/",
+                "rating": 8.5,
+                "excerpt": "Millie Bobby Brown shines..."
+            }
+        ],
+        "userReviews": []
+    },
+    {
+        "id": 3,
+        "title": "Gabriel and the Guardians",
+        "year": 2025,
+        "genres": [
+            "Fantasy",
+            "Adventure",
+            "Animation"
+        ],
+        "director": null,
+        "creator": "Animation Studio",
+        "stars": [
+            "Dee Bradley Baker",
+            "Ja'Siah Young",
+            "Gracen Newton"
+        ],
+        "description": "\"Gabriel and the Guardians\" is an epic anime fantasy series that follows Gabriel and his team of magical guardians as they protect their world from dark forces. With stunning animation and heartfelt storytelling, it appeals to audiences of all ages.",
+        "coverImage": "https://via.placeholder.com/300x450.png?text=Gabriel",
+        "type": "tvshow",
+        "ageRating": "PG",
+        "duration": "25 min per episode",
+        "yourRating": 8.8,
+        "yourReview": "A beautiful and imaginative animated series perfect for the whole family. The characters are endearing, the animation is fluid, and the story is engaging from start to finish. Highly recommended.",
+        "externalReviews": [
+            {
+                "source": "IMDb",
+                "url": "https://www.imdb.com/title/tt29661387/",
+                "rating": 8.4,
+                "excerpt": "A magical animated series..."
+            },
+            {
+                "source": "Rotten Tomatoes",
+                "url": "https://www.rottentomatoes.com/tv/gabriel_and_the_guardians",
+                "rating": 8.9,
+                "excerpt": "Stunning animation..."
+            },
+            {
+                "source": "Animation Magazine",
+                "url": "https://www.animationmagazine.net/reviews/gabriel-and-the-guardians-review/",
+                "rating": 9.0,
+                "excerpt": "Visually impressive..."
+            }
+        ],
+        "userReviews": []
+    }
+]
