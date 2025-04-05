@@ -1,0 +1,203 @@
+/* Basic Dark Theme for PickFlix */
+
+body {
+    background-color: #141414;
+    color: #e5e5e5;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.navbar {
+    margin-bottom: 0; /* Remove default margin */
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e50914 !important; /* Netflix-like red */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+    color: #ffffff;
+}
+
+ .navbar-dark .navbar-nav .nav-link.active {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.dropdown-menu {
+     background-color: #333;
+     border: 1px solid #444;
+}
+
+.dropdown-item {
+     color: rgba(255, 255, 255, 0.7);
+}
+.dropdown-item:hover,
+.dropdown-item:focus {
+     color: #ffffff;
+     background-color: #e50914;
+}
+
+.hero-section {
+    background-color: #1f1f1f; /* Darker grey */
+    padding: 4rem 0;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+.hero-section h1 {
+    color: #e50914;
+    font-weight: bold;
+}
+
+ .hero-section .btn-primary {
+    background-color: #e50914;
+    border-color: #e50914;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+}
+.hero-section .btn-primary:hover {
+    background-color: #f40612;
+    border-color: #f40612;
+}
+
+
+.container h2 {
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e50914;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.card.movie-card {
+    background-color: #222;
+    border: 1px solid #333;
+    color: #e5e5e5;
+    margin-bottom: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%; /* Ensure cards in a row have same height */
+}
+
+.card.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.movie-poster {
+    height: 400px; /* Adjusted height for better poster view */
+    background-color: #111; /* Darker placeholder */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid #333;
+}
+
+.movie-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Changed to cover */
+}
+
+/* Placeholder icon styles */
+ .movie-poster .fa-film,
+ .movie-poster .fa-tv {
+    color: #555;
+ }
+ .movie-poster span {
+     color: #888;
+     font-size: 0.9rem;
+     margin-top: 5px;
+ }
+
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.movie-details {
+    font-size: 0.85rem;
+    color: #aaa;
+    line-height: 1.4;
+}
+
+.movie-rating {
+    font-weight: bold;
+    color: #e50914; /* Red rating */
+}
+
+.badge.bg-secondary {
+    background-color: #444 !important; /* Darker badge */
+    color: #ccc;
+    font-size: 0.75rem;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+.btn-outline-secondary {
+    color: #ccc;
+    border-color: #555;
+}
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #e50914;
+    border-color: #e50914;
+}
+
+/* Search Bar */
+.search-bar .form-control {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+.search-bar .form-control::placeholder {
+    color: #888;
+}
+.search-bar .btn-secondary {
+    background-color: #e50914;
+    border-color: #e50914;
+}
+ .search-bar .btn-secondary:hover {
+    background-color: #f40612;
+    border-color: #f40612;
+}
+
+
+.footer {
+    background-color: #1f1f1f; /* Darker grey */
+    padding: 1.5rem 0;
+    text-align: center;
+    margin-top: 3rem;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #aaa;
+    margin: 0 0.5rem;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+/* Adjust main content padding */
+.main-content {
+     padding-bottom: 60px; /* Ensure footer doesn't overlap */
+}

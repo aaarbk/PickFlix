@@ -299,4 +299,37 @@ function sortProgrammes(array $programmes, string $field = 'yourRating', string 
 
     return $programmes;
 }
+
+/**
+ * Updates specific fields for a user in users.json.
+ * @param int $userId The ID of the user to update.
+ * @param array $updateData Associative array of fields to update (e.g., ['preferredMovieId' => 5]).
+ * @return bool True on success, false if user not found or save fails.
+ */
+function updateUser(int $userId, array $updateData): bool {
+    $users = getAllUsers();
+    $userFound = false;
+    $updatedUsers = [];
+
+    foreach ($users as $user) {
+        if (isset($user['id']) && $user['id'] === $userId) {
+            $userFound = true;
+            // Update specified fields
+            foreach ($updateData as $key => $value) {
+                // Only allow updating specific fields for security/simplicity
+                if (in_array($key, ['preferredMovieId', 'preferredTVShowId', 'firstName', 'lastName', 'country', 'email', 'dateOfBirth' /* add others if needed */])) {
+                    $user[$key] = $value;
+                }
+            }
+        }
+        $updatedUsers[] = $user;
+    }
+
+    if (!$userFound) {
+        error_log("User not found for update: ID " . $userId);
+        return false;
+    }
+
+    return saveJsonData('users.json', $updatedUsers);
+}
 ?>
